@@ -1,9 +1,7 @@
-SRC = unity/unity.c\
-src/ReadCsv.c\
+SRC = src/ReadCsv.c\
 main.c
 
-INC = -Iunity\
--Iinc
+INC = -Iinc
 
 PROJECT_NAME = result.out
 
