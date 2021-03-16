@@ -1,9 +1,9 @@
 /**
-* @file ReadCsv.h
+* @file TotalSales.h
 *
 */
-#ifndef __READCSV_H__
-#define __READCSV_H__
+#ifndef __TOTALSALES_H__
+#define __TOTALSALES_H__
 
 #include "Sales.h"
 
@@ -13,6 +13,6 @@
 * @param[out] primeFlag Integer indicating if number is prime or not
 * @note Returns 1 if prime and 0 if not prime
 */
-sales *readCsv(sales *sales);
+double totalSales(sales *sales);
 
 #endif

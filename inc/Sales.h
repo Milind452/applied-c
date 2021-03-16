@@ -13,12 +13,14 @@
 * @param[out] primeFlag Integer indicating if number is prime or not
 * @note Returns 1 if prime and 0 if not prime
 */
-typedef struct Sales {
+typedef struct {
     char* cityName;
     char* companyName;
     uint32_t modelNumber;
     float productCost;
     char* monthOfSale;
 }sales;
+
+// extern int size;
 
 #endif

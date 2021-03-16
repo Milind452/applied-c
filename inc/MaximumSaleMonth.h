@@ -1,9 +1,9 @@
 /**
-* @file ReadCsv.h
+* @file MaximumSaleMonth.h
 *
 */
-#ifndef __READCSV_H__
-#define __READCSV_H__
+#ifndef __MAXIMUMSALEMONTH_H__
+#define __MAXIMUMSALEMONTH_H__
 
 #include "Sales.h"
 
@@ -13,6 +13,6 @@
 * @param[out] primeFlag Integer indicating if number is prime or not
 * @note Returns 1 if prime and 0 if not prime
 */
-sales *readCsv(sales *sales);
+char *maximumSaleMonth(sales *sale);
 
 #endif
