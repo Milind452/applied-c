@@ -1,5 +1,5 @@
 /**
-* @file ProductDetailsByManufacturer.h
+* @file ProductDetailsByManufacturerAndMonth.h
 *
 */
 #ifndef __PRODUCTDETAILSBYMANUFACTURERANDMONTH_H__

@@ -1,0 +1,12 @@
+test/test.c:130:Test_TotalSales:PASS
+test/test.c:131:Test_MaximumSaleMonth:PASS
+test/test.c:132:Test_MinimumSaleMonth:PASS
+test/test.c:133:Test_SortByCost:PASS
+test/test.c:134:Test_ProductDetailsByCity:PASS
+test/test.c:135:Test_ProductDetailsByMonth:PASS
+test/test.c:136:Test_ProductDetailsByManufacturer:PASS
+test/test.c:137:Test_ProductDetailsByManufacturerAndMonth:PASS
+
+-----------------------
+8 Tests 0 Failures 0 Ignored 
+OK

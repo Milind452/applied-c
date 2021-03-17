@@ -36,19 +36,29 @@ PROJECT_OUTPUT = $(PROJECT_NAME).out
 
 TEST_OUTPUT = TEST_$(PROJECT_NAME).out
 
+REPORT = report
+
+TEST_REPORT = test-report
+
 $(PROJECT_NAME): all
 
 .PHONY: run clean test all
 
 all:
 	gcc $(SRC) $(INC) -o $(PROJECT_OUTPUT)
+	gcc $(TEST_SRC) $(TEST_INC) -o $(TEST_OUTPUT)
 
-run: $(PROJECT_NAME)
+run:
 	./$(PROJECT_OUTPUT)
 
 test:
-	gcc $(TEST_SRC) $(TEST_INC) -o $(TEST_OUTPUT)
 	./$(TEST_OUTPUT)
 
+test-report:
+	./$(TEST_OUTPUT) > $(REPORT)/$(TEST_REPORT)
+	
+doc:
+	make -C documentation
+
 clean:
-	rm -rf $(PROJECT_OUTPUT) $(TEST_OUTPUT)
+	rm -rf $(PROJECT_OUTPUT) $(TEST_OUTPUT) documentation/html
