@@ -1,15 +1,14 @@
 /**
-* @file TotalSales.c
-*
-*/
-#include "Sales.h"
+ * @file TotalSales.c
+ *
+ */
 #include "TotalSales.h"
-
+#include "Sales.h"
 
 double totalSales(sales *sale) {
-    double sum = 0;
-    for(int i = 0; i < size; i++) {
-        sum += sale[i].productCost;
-    }
-    return sum;
+  double sum = 0;
+  for (int i = 0; i < size; i++) {
+    sum += sale[i].productCost;
+  }
+  return sum;
 }

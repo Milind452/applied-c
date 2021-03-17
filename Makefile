@@ -40,6 +40,10 @@ REPORT = report
 
 TEST_REPORT = test-report
 
+VALGRIND_REPORT = valgrind-report
+
+CPPCHECK_REPORT = cppcheck-report
+
 $(PROJECT_NAME): all
 
 .PHONY: run clean test all
@@ -56,9 +60,19 @@ test:
 
 test-report:
 	./$(TEST_OUTPUT) > $(REPORT)/$(TEST_REPORT)
-	
+
+valgrind:
+	valgrind --tool=memcheck ./$(PROJECT_OUTPUT) > $(REPORT)/$(VALGRIND_REPORT)
+
+cppcheck:
+	cppcheck $(SRC) > $(REPORT)/$(CPPCHECK_REPORT)
+
 doc:
 	make -C documentation
 
 clean:
 	rm -rf $(PROJECT_OUTPUT) $(TEST_OUTPUT) documentation/html
+
+clean-all:
+	rm -rf $(PROJECT_OUTPUT) $(TEST_OUTPUT) documentation/html
+	rm -f $(REPORT)/$(CPPCHECK_REPORT) $(REPORT)/$(VALGRIND_REPORT)
