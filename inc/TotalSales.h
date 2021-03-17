@@ -7,11 +7,13 @@
 
 #include "Sales.h"
 
+
+extern int size;
+
 /**
-* Check if a number is prime or not
-* @param[in] Number Integer to be checked
-* @param[out] primeFlag Integer indicating if number is prime or not
-* @note Returns 1 if prime and 0 if not prime
+* Total amount of sales in the year
+* @param[in] sale Array of structures to be searched
+* @return Sum of all sales made in that year
 */
 double totalSales(sales *sales);
 

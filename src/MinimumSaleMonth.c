@@ -1,99 +1,92 @@
 /**
-* @file ReadCsv.c
+* @file MinimumSaleMonth.c
 *
 */
-#include <stdlib.h> 
-#include <stdio.h> 
 #include <string.h>
+#include <stdlib.h>
 #include "Sales.h"
 #include "MinimumSaleMonth.h"
 
 
-/**
-* Check if a number is prime or not
-* @param[in] Number to be checked
-* @return If number is prime or not
-* @note Returns 1 if prime and 0 if not prime
-*/
- 
-  
-// Driver Code 
 char *minimumSaleMonth(sales *sale) {
-    float months[12];
-    int i = 0;
-    while(sale[i].productCost != 0) {
-        if(strcmpi(sale[i].monthOfSale, "jan")) {
+    float months[12] = {0.0};
+    for(int i = 0; i < size; i++) {
+        if(strcmp(sale[i].monthOfSale, "jan") == 0) {
             months[0] += sale[i].productCost;
-        } else if(strcmpi(sale[i].monthOfSale, "feb")) {
+        } else if(strcmp(sale[i].monthOfSale, "feb") == 0) {
             months[1] += sale[i].productCost;
-        } else if(strcmpi(sale[i].monthOfSale, "mar")) {
+        } else if(strcmp(sale[i].monthOfSale, "mar") == 0) {
             months[2] += sale[i].productCost;
-        } else if(strcmpi(sale[i].monthOfSale, "apr")) {
+        } else if(strcmp(sale[i].monthOfSale, "apr") == 0) {
             months[3] += sale[i].productCost;
-        } else if(strcmpi(sale[i].monthOfSale, "may")) {
+        } else if(strcmp(sale[i].monthOfSale, "may") == 0) {
             months[4] += sale[i].productCost;
-        } else if(strcmpi(sale[i].monthOfSale, "jun")) {
+        } else if(strcmp(sale[i].monthOfSale, "jun") == 0) {
             months[5] += sale[i].productCost;
-        } else if(strcmpi(sale[i].monthOfSale, "jul")) {
+        } else if(strcmp(sale[i].monthOfSale, "jul") == 0) {
             months[6] += sale[i].productCost;
-        } else if(strcmpi(sale[i].monthOfSale, "aug")) {
+        } else if(strcmp(sale[i].monthOfSale, "aug") == 0) {
             months[7] += sale[i].productCost;
-        } else if(strcmpi(sale[i].monthOfSale, "sep")) {
+        } else if(strcmp(sale[i].monthOfSale, "sep") == 0) {
             months[8] += sale[i].productCost;
-        } else if(strcmpi(sale[i].monthOfSale, "oct")) {
+        } else if(strcmp(sale[i].monthOfSale, "oct") == 0) {
             months[9] += sale[i].productCost;
-        } else if(strcmpi(sale[i].monthOfSale, "nov")) {
+        } else if(strcmp(sale[i].monthOfSale, "nov") == 0) {
             months[10] += sale[i].productCost;
-        } else if(strcmpi(sale[i].monthOfSale, "dec")) {
+        } else if(strcmp(sale[i].monthOfSale, "dec") == 0) {
             months[11] += sale[i].productCost;
         }
-        i++;
     }
     float min = months[0];
     int monthNumber = 0;
-    for(i = 1; i < 12; i++) {
+    for(int i = 1; i < 12; i++) {
         if(months[i] < min) {
             min = months[i];
             monthNumber = i;
         }
     }
     
+    char* month = (char*)malloc(3 * sizeof(month));
     switch(monthNumber) {
         case 0:
-            return "jan";
+            strcpy(month, "jan");
             break;
         case 1:
-            return "feb";
+            strcpy(month, "feb");
             break;
         case 2:
-            return "mar";
+            strcpy(month, "mar");
             break;
         case 3:
-            return "apr";
+            strcpy(month, "apr");
             break;
         case 4:
-            return "may";
+            strcpy(month, "may");
             break;
         case 5:
-            return "jun";
+            strcpy(month, "jun");
             break;
         case 6:
-            return "jul";
+            strcpy(month, "jul");
             break;
         case 7:
-            return "aug";
+            strcpy(month, "aug");
             break;
         case 8:
-            return "sep";
+            strcpy(month, "sep");
             break;
         case 9:
-            return "oct";
+            strcpy(month, "oct");
             break;
         case 10:
-            return "nov";
+            strcpy(month, "nov");
             break;
         case 11:
-            return "dec";
+            strcpy(month, "dec");
+            break;
+        default:
+            return NULL;
             break;
     }
+    return month;
 }

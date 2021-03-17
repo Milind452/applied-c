@@ -7,11 +7,14 @@
 
 #include "Sales.h"
 
+
+extern int size;
+
 /**
-* Check if a number is prime or not
-* @param[in] Number Integer to be checked
-* @param[out] primeFlag Integer indicating if number is prime or not
-* @note Returns 1 if prime and 0 if not prime
+* Details of all products sold in given month
+* @param[in] sale Array of structures to be searched
+* @param[in] month Given month to be searched in the list
+* @return Details of sales for given month
 */
 sales *productDetailsByMonth(sales *sale, char* month);
 

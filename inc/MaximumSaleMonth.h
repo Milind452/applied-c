@@ -7,11 +7,13 @@
 
 #include "Sales.h"
 
+
+extern int size;
+
 /**
-* Check if a number is prime or not
-* @param[in] Number Integer to be checked
-* @param[out] primeFlag Integer indicating if number is prime or not
-* @note Returns 1 if prime and 0 if not prime
+* Find the month with maximum amount of sales
+* @param[in] sale Array of structures to be searched
+* @return Month with maximum amount of sales
 */
 char *maximumSaleMonth(sales *sale);
 

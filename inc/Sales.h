@@ -8,10 +8,7 @@
 #include <stdint.h>
 
 /**
-* Check if a number is prime or not
-* @param[in] Number Integer to be checked
-* @param[out] primeFlag Integer indicating if number is prime or not
-* @note Returns 1 if prime and 0 if not prime
+* Structure with City Name; Manufacturer of the Product; Model Number; Cost of the product and Month of sale
 */
 typedef struct {
     char* cityName;
@@ -20,7 +17,5 @@ typedef struct {
     float productCost;
     char* monthOfSale;
 }sales;
-
-// extern int size;
 
 #endif

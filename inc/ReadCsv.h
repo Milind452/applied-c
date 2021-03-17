@@ -7,11 +7,12 @@
 
 #include "Sales.h"
 
+extern int size;
+
 /**
-* Check if a number is prime or not
-* @param[in] Number Integer to be checked
-* @param[out] primeFlag Integer indicating if number is prime or not
-* @note Returns 1 if prime and 0 if not prime
+* Read the CSV file and put data in an array of structures
+* @param[in] sale Empty array of structures to store data
+* @return Array of structures with information read from CSV file
 */
 sales *readCsv(sales *sales);
 

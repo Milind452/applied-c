@@ -6,6 +6,10 @@
         "string_view": "c",
         "initializer_list": "c",
         "ranges": "c",
-        "utility": "c"
+        "utility": "c",
+        "sortbycost.h": "c",
+        "productdetailsbymanufacturerandmonth.h": "c",
+        "totalsales.h": "c",
+        "readcsv.h": "c"
     }
 }

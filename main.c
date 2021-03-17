@@ -1,99 +1,60 @@
+/**
+* @file main.c
+*
+*/
 #include <stdio.h>
-#include <stdint.h>
 #include <stdlib.h>
-#include <string.h>
-// #include "Sales.h"
-// #include "ReadCsv.h"
-// #include "TotalSales.h"
-// #include "MinimumSaleMonth.h"
-// #include "ProductDetailsByMonth.h"
+#include "Sales.h"
+#include "ReadCsv.h"
+#include "TotalSales.h"
+#include "MinimumSaleMonth.h"
+#include "MaximumSaleMonth.h"
+#include "ProductDetailsByMonth.h"
+#include "ProductDetailsByManufacturer.h"
+#include "ProductDetailsByManufacturerAndMonth.h"
+#include "ProductDetailsByCity.h"
+#include "SortByCost.h"
+#include "ShowSales.h"
 
-typedef struct {
-    char* cityName;
-    char* companyName;
-    uint32_t modelNumber;
-    float productCost;
-    char* monthOfSale;
-}sales;
 
-// static int size = 0;
-
-sales *readCsv(sales *sale) {
-    sale = (sales*)malloc(sizeof(sales) * 1);
-    FILE* fp = fopen("resources/dummy.csv", "r"); 
-  
-    if (!fp) {
-        printf("Can't open file\n"); 
-    }
-  
-    else {
-        char* buffer = malloc(256);
-        char* value;
-        if (buffer == NULL) {
-            printf ("No memory\n");
-        }
-        int i = 0;
-        while (fgets(buffer, 255, fp) != NULL) { 
-            if ((strlen(buffer)>0) && (buffer[strlen (buffer) - 1] == '\n')) {
-                buffer[strlen(buffer) - 1] = '\0';       
-            }
-
-            value = strtok(buffer, ",");
-            sale[i].cityName = strdup(value);
-
-            value = strtok(NULL, ",");
-            sale[i].companyName = strdup(value);
-
-            value = strtok(NULL, ",");
-            sale[i].modelNumber = atoi(value);
-
-            value = strtok(NULL, ",");
-            sale[i].productCost = atof(value);
-
-            value = strtok(NULL, ",");
-            sale[i].monthOfSale = strdup(value);
-            
-            // printf("\n"); 
-            // printf("index i= %i  ID: %i, %s, %s, %s \n",i, sale[i].ID , sale[i].name, sale[i].dateIn , sale[i].dateOut);
-
-            i++;
-            sale = (sales*)realloc(sale, (i + 1) * sizeof(sales));
-        } 
-        // size = i;
-        fclose(fp); 
-        return sale;
-    }
-}
+/**
+ * Stores the total number of sales details read from CSV file
+ */
+int saleSize;
+/**
+ * Stores the number of sales details
+ */
+int size;
 
 int main() {
     sales *sale = NULL;
     sale = readCsv(sale);
-    printf("%zu,%zu\n", sizeof(sale),sizeof(sale[0]));
-    // printf("%d", size);
-    int i = 0;
-    while(sale[i].cityName != NULL) {
-    // for(i = 0; i < size; i++) {
-        printf("%s", sale[i].cityName);
-        printf("\t%s", sale[i].companyName);
-        printf("\t%d", sale[i].modelNumber);
-        printf("\t%.2f", sale[i].productCost);
-        printf("\t%s\n", sale[i].monthOfSale);
-        i++;
-    }
-    // printf("%lf", totalSales(sale));
-    // printf("%s", minimumSaleMonth(sale));
-    // sales *saleDetails = NULL;
-    // saleDetails = productDetailsByMonth(sale, "jan");
-    // i = 0;
-    // while(saleDetails[i].cityName != NULL) {
-    //     printf("###########");
-    //     printf("%s", sale[i].cityName);
-    //     printf("\t%s", sale[i].companyName);
-    //     printf("\t%d", sale[i].modelNumber);
-    //     printf("\t%.2f", sale[i].productCost);
-    //     printf("\t%s\n", sale[i].monthOfSale);
-    //     i++;
-    // }
+    saleSize = size;
+    showSales(sale, "All product details in CSV File");
+    printf("\n\nTotal amount of sales: %lf\n", totalSales(sale));
+    printf("\n\nMonth with minimum number of sales: %s\n", minimumSaleMonth(sale));
+    printf("\n\nMonth with maximum number of sales: %s\n", maximumSaleMonth(sale));
+    sales *saleDetails = NULL;
+    saleDetails = productDetailsByMonth(sale, "jan");
+    showSales(saleDetails, "All product details in given month");
+    size = saleSize;
+    saleDetails = NULL;
+    saleDetails = productDetailsByManufacturer(sale, "HP");
+    showSales(saleDetails, "All product details by given manufacturer");
+    size = saleSize;
+    saleDetails = NULL;
+    saleDetails = productDetailsByManufacturerAndMonth(sale, "Asus", "apr");
+    showSales(saleDetails, "All product details by given manufacturer in given month");
+    size = saleSize;
+    saleDetails = NULL;
+    saleDetails = productDetailsByCity(sale, "Delhi");
+    showSales(saleDetails, "All product details sold in given city");
+    size = saleSize;
+    sales* sortedSale = NULL;
+    sortedSale = sortByCost(sale);
+    showSales(sortedSale, "All product details sorted by product cost");
+    free(saleDetails);
+    free(sortedSale);
     free(sale);
     return 0;
 }
