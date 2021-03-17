@@ -1,4 +1,4 @@
-#include "test.c"
+#include "test.h"
 
 int main() {
     test();

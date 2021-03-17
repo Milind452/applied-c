@@ -54,7 +54,6 @@ int main() {
     sortedSale = sortByCost(sale);
     showSales(sortedSale, "All product details sorted by product cost");
     free(saleDetails);
-    free(sortedSale);
     free(sale);
     return 0;
 }

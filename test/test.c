@@ -1,3 +1,5 @@
+#include <string.h>
+
 #include "unity.h"
 #include "test.h"
 
@@ -16,37 +18,123 @@
 void setUp(){}
 
 void tearDown(){}
+
 int size;
-void demo(void) {
+void Test_TotalSales(void) {
     sales *sale = NULL;
     sale = readCsv(sale);
-    TEST_ASSERT_EQUAL_MESSAGE(4516665.250855, totalSales(sale), "Negative test case[-2]");
+    TEST_ASSERT_EQUAL(1416665.250854, totalSales(sale));
 }
 
-// void testPrime(void)
-// {
-//   TEST_ASSERT_EQUAL_MESSAGE(1, checkPrime(37), "Standard test case[37]");
-//   TEST_ASSERT_EQUAL_MESSAGE(1, checkPrime(97), "Standard test case[97]");
-//   TEST_ASSERT_EQUAL_MESSAGE(0, checkPrime(10), "Standard test case[10]");
-// }
-// void testOneZero(void)
-// {
-//   TEST_ASSERT_EQUAL_MESSAGE(0, checkPrime(1), "Border test case[1]");
-//   TEST_ASSERT_EQUAL_MESSAGE(0, checkPrime(0), "Border test case[0]");
-// }
-// void testNegative(void)
-// {
-//   TEST_ASSERT_EQUAL_MESSAGE(0, checkPrime(-2), "Negative test case[-2]");
-// }
+void Test_MaximumSaleMonth(void) {
+    sales *sale = NULL;
+    sale = readCsv(sale);
+    TEST_ASSERT_EQUAL_STRING("feb", maximumSaleMonth(sale));
+}
+
+void Test_MinimumSaleMonth(void) {
+    sales *sale = NULL;
+    sale = readCsv(sale);
+    TEST_ASSERT_EQUAL_STRING("mar", minimumSaleMonth(sale));
+}
+
+void Test_SortByCost(void) {
+    int flag = 1;
+    sales *sale = NULL;
+    sales *sortedSale = NULL;
+    sale = readCsv(sale);
+    sortedSale = sortByCost(sale);
+    for(int i = 1; i < size; i++) {
+        if(sortedSale[i].productCost < sortedSale[i - 1].productCost) {
+            flag = 0;
+            break;
+        }
+    }
+    TEST_ASSERT_EQUAL(1, flag);
+}
+
+void Test_ProductDetailsByCity(void) {
+    int flag = 1;
+    sales *sale = NULL;
+    sales *saleDetails = NULL;
+    sale = readCsv(sale);
+    saleDetails = productDetailsByCity(sale, "Delhi");
+    for(int i = 0; i < size; i++) {
+        if(strcmp(saleDetails[i].cityName, "Delhi") != 0) {
+            flag = 0;
+            break;
+        }
+    }
+    TEST_ASSERT_EQUAL(1, flag);
+    TEST_ASSERT_EQUAL(10, size);
+}
+
+void Test_ProductDetailsByMonth(void) {
+    int flag = 1;
+    sales *sale = NULL;
+    sales *saleDetails = NULL;
+    sale = readCsv(sale);
+    saleDetails = productDetailsByMonth(sale, "jan");
+    for(int i = 0; i < size; i++) {
+        if(strcmp(saleDetails[i].monthOfSale, "jan") != 0) {
+            flag = 0;
+            break;
+        }
+    }
+    TEST_ASSERT_EQUAL(1, flag);
+    TEST_ASSERT_EQUAL(5, size);
+}
+
+void Test_ProductDetailsByManufacturer(void) {
+    int flag = 1;
+    sales *sale = NULL;
+    sales *saleDetails = NULL;
+    sale = readCsv(sale);
+    saleDetails = productDetailsByManufacturer(sale, "HP");
+    for(int i = 0; i < size; i++) {
+        if(strcmp(saleDetails[i].companyName, "HP") != 0) {
+            flag = 0;
+            break;
+        }
+    }
+    TEST_ASSERT_EQUAL(1, flag);
+    TEST_ASSERT_EQUAL(5, size);
+}
+
+void Test_ProductDetailsByManufacturerAndMonth(void) {
+    int flag = 1;
+    sales *sale = NULL;
+    sales *saleDetails = NULL;
+    sale = readCsv(sale);
+    saleDetails = productDetailsByManufacturerAndMonth(sale, "Asus", "apr");
+    for(int i = 0; i < size; i++) {
+        if(strcmp(saleDetails[i].companyName, "Asus") != 0) {
+            flag = 0;
+            break;
+        }
+        if(strcmp(saleDetails[i].monthOfSale, "apr") != 0) {
+            flag = 0;
+            break;
+        }
+    }
+    TEST_ASSERT_EQUAL(1, flag);
+    TEST_ASSERT_EQUAL(1, size);
+}
+
+
 
 int test(void)
 {
     UNITY_BEGIN();
 
-    RUN_TEST(demo);
-//   RUN_TEST(testPrime);
-//   RUN_TEST(testOneZero);
-//   RUN_TEST(testNegative);
+    RUN_TEST(Test_TotalSales);
+    RUN_TEST(Test_MaximumSaleMonth);
+    RUN_TEST(Test_MinimumSaleMonth);
+    RUN_TEST(Test_SortByCost);
+    RUN_TEST(Test_ProductDetailsByCity);
+    RUN_TEST(Test_ProductDetailsByMonth);
+    RUN_TEST(Test_ProductDetailsByManufacturer);
+    RUN_TEST(Test_ProductDetailsByManufacturerAndMonth);
 
-  return UNITY_END();
+    return UNITY_END();
 }
